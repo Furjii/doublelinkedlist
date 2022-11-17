@@ -62,6 +62,32 @@ namespace doublelinkedlist
                     return;
                 }
             }
+            /*On the execution of the above for loop, prev and
+             * current will point to those nodes
+             between which the new node is to be inserted.*/
+            newnode.next = current;
+            newnode.prev = previous;
+
+            /*if the nodes is to be inserted at the end of the list.*/
+            if (current == null)
+            {
+                newnode.next = null;
+                previous.next = newnode;
+                return;
+            }
+            current.prev = newnode;
+            previous.next = newnode;
+        }
+
+        /*Cheks whether the specified node is present*/
+        public bool Seacth(int rollNo, ref Node previous, ref Node current)
+        {
+            for (previous = current = START; current != null &&
+                rollNo != current.rollNumber; previous = current,current = current.next)
+            { }
+            /*the above for loop traverse the list. if the specified node
+             * is found then the function return true, otherwise false.*/
+            return (current != null);
         }
         
     }
